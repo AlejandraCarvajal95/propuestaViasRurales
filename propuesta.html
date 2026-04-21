@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta · Viasrurales</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --ink: #0f1117;
+            --ink2: #3a3d4a;
+            --ink3: #7a7e8f;
+            --paper: #f5f4f0;
+            --white: #ffffff;
+            --accent: #d04a2f;
+            --accent2: #1a6b3c;
+            --border: rgba(15, 17, 23, 0.1);
+            --shadow: 0 2px 16px rgba(15, 17, 23, 0.08);
+            --shadow-lg: 0 8px 40px rgba(15, 17, 23, 0.14);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: var(--ink);
+            color: var(--white);
+            padding: 64px 40px 56px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 50% 110%, rgba(208, 74, 47, 0.22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.45);
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(32px, 5vw, 54px);
+            line-height: 1.12;
+            margin-bottom: 20px;
+            letter-spacing: -.01em;
+        }
+
+        .hero h1 span {
+            color: #f2856a;
+        }
+
+        .hero-sub {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 520px;
+            margin: 0 auto 36px;
+        }
+
+        .hero-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .pill {
+            font-size: 12px;
+            font-weight: 500;
+            padding: 6px 16px;
+            border-radius: 99px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        /* ── SECTION ── */
+        section {
+            padding: 64px 40px;
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--ink3);
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(24px, 3.5vw, 36px);
+            line-height: 1.2;
+            margin-bottom: 40px;
+        }
+
+        /* ── ANTES / DESPUÉS ── */
+        .compare-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media(max-width:700px) {
+            .compare-wrap {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .compare-card {
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .compare-header {
+            padding: 14px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .compare-header.before {
+            background: #faf0ee;
+            color: var(--accent);
+            border-bottom: 1px solid rgba(208, 74, 47, 0.12);
+        }
+
+        .compare-header.after {
+            background: #eef7f1;
+            color: var(--accent2);
+            border-bottom: 1px solid rgba(26, 107, 60, 0.12);
+        }
+
+        .compare-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .compare-header.before .compare-dot {
+            background: var(--accent);
+        }
+
+        .compare-header.after .compare-dot {
+            background: var(--accent2);
+        }
+
+        .compare-body {
+            padding: 20px;
+        }
+
+        .compare-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 9px 0;
+            border-bottom: 1px solid rgba(15, 17, 23, 0.05);
+            font-size: 14px;
+        }
+
+        .compare-item:last-child {
+            border-bottom: none;
+        }
+
+        .ci-icon {
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ── MOCKUP BROWSER ── */
+        .browser-wrap {
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .browser-bar {
+            background: #e8e7e3;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .b-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+        }
+
+        .b-url {
+            flex: 1;
+            margin-left: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 6px;
+            padding: 4px 12px;
+            font-size: 12px;
+            color: var(--ink3);
+        }
+
+        .browser-body {
+            display: flex;
+        }
+
+        /* Sidebar mockup */
+        .mock-sidebar {
+            width: 180px;
+            flex-shrink: 0;
+            background: #0f1117;
+            padding: 20px 0;
+            min-height: 480px;
+        }
+
+        .mock-logo {
+            padding: 0 20px 20px;
+            font-family: 'DM Serif Display', serif;
+            font-size: 18px;
+            color: #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 16px;
+        }
+
+        .mock-logo span {
+            color: #f2856a;
+        }
+
+        .mock-nav-item {
+            padding: 9px 20px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.45);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: default;
+            transition: background .15s;
+        }
+
+        .mock-nav-item.active {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+        }
+
+        .mock-nav-icon {
+            font-size: 14px;
+        }
+
+        /* Main content mockup */
+        .mock-main {
+            flex: 1;
+            padding: 28px;
+            background: #fafaf8;
+        }
+
+        .mock-page-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 22px;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+
+        .mock-page-sub {
+            font-size: 13px;
+            color: var(--ink3);
+            margin-bottom: 24px;
+        }
+
+        /* Stat cards */
+        .mock-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .mock-stat {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .mock-stat-num {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--ink);
+            line-height: 1;
+        }
+
+        .mock-stat-label {
+            font-size: 11px;
+            color: var(--ink3);
+            margin-top: 4px;
+        }
+
+        .mock-stat-badge {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 7px;
+            border-radius: 99px;
+            margin-top: 8px;
+            display: inline-block;
+        }
+
+        .badge-green {
+            background: #d4eddd;
+            color: #1a6b3c;
+        }
+
+        .badge-amber {
+            background: #fdefd4;
+            color: #8c5e10;
+        }
+
+        /* Table mockup */
+        .mock-table-wrap {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .mock-table-header {
+            padding: 14px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mock-table-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .mock-btn {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 8px;
+            background: var(--ink);
+            color: #fff;
+            border: none;
+            cursor: default;
+        }
+
+        .mock-btn-outline {
+            font-size: 11px;
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--ink3);
+            border: 1px solid var(--border);
+            cursor: default;
+            margin-right: 6px;
+        }
+
+        table.mock-t {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        table.mock-t th {
+            padding: 8px 14px;
+            text-align: left;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            color: var(--ink3);
+            background: #f7f6f3;
+            border-bottom: 1px solid var(--border);
+        }
+
+        table.mock-t td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(15, 17, 23, 0.04);
+            color: var(--ink2);
+        }
+
+        table.mock-t tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status-chip {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 3px 9px;
+            border-radius: 99px;
+            display: inline-block;
+        }
+
+        .sc-green {
+            background: #d4eddd;
+            color: #1a6b3c;
+        }
+
+        .sc-amber {
+            background: #fdefd4;
+            color: #8c5e10;
+        }
+
+        .sc-blue {
+            background: #ddeaf7;
+            color: #1a4a7a;
+        }
+
+        /* ── BENEFITS GRID ── */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 22px;
+            box-shadow: var(--shadow);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .benefit-icon {
+            font-size: 26px;
+            margin-bottom: 14px;
+        }
+
+        .benefit-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .benefit-desc {
+            font-size: 13px;
+            color: var(--ink3);
+            line-height: 1.55;
+        }
+
+        /* ── TIMELINE ── */
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            background: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .tl-phase {
+            padding: 20px 16px;
+            border-right: 1px solid var(--border);
+            position: relative;
+        }
+
+        .tl-phase:last-child {
+            border-right: none;
+        }
+
+        .tl-num {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--ink3);
+            margin-bottom: 6px;
+        }
+
+        .tl-title {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .tl-weeks {
+            font-size: 11px;
+            color: var(--ink3);
+        }
+
+        .tl-bar {
+            height: 3px;
+            border-radius: 2px;
+            background: #e5e4e0;
+            margin-top: 12px;
+        }
+
+        .tl-fill {
+            height: 100%;
+            border-radius: 2px;
+            background: var(--ink);
+        }
+
+        /* ── PRICING ── */
+        .pricing-row {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .pricing-header {
+            display: grid;
+            grid-template-columns: 1fr 200px 140px;
+            padding: 12px 24px;
+            background: var(--ink);
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .pricing-item {
+            display: grid;
+            grid-template-columns: 1fr 200px 140px;
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+        }
+
+        .pricing-item:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-item:hover {
+            background: #f7f6f3;
+        }
+
+        .pi-phase {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--ink3);
+        }
+
+        .pi-desc {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .pi-weeks {
+            font-size: 12px;
+            color: var(--ink3);
+        }
+
+        .pi-price {
+            font-size: 14px;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .pricing-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        .pt-label {
+            font-size: 13px;
+            opacity: .6;
+        }
+
+        .pt-num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: var(--ink);
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            padding: 32px;
+            font-size: 13px;
+        }
+
+        .footer strong {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero>* {
+            animation: fadeUp .6s ease both;
+        }
+
+        .hero .hero-eyebrow {
+            animation-delay: .05s;
+        }
+
+        .hero h1 {
+            animation-delay: .15s;
+        }
+
+        .hero .hero-sub {
+            animation-delay: .25s;
+        }
+
+        .hero .hero-pills {
+            animation-delay: .35s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <div class="hero">
+        <p class="hero-eyebrow">Propuesta de modernización · Grupo Vial</p>
+        <h1>El sistema que tu empresa<br><span>ya necesita.</span></h1>
+        <p class="hero-sub">Migración del sistema actual de aforos vehiculares a una plataforma moderna, segura y
+            escalable — lista para crecer.</p>
+        <div class="hero-pills">
+            <span class="pill">Next.js + Supabase</span>
+            <span class="pill">14 semanas de desarrollo</span>
+            <span class="pill">7 fases de entrega</span>
+            <span class="pill">Soporte incluido</span>
+        </div>
+    </div>
+
+    <!-- ANTES / DESPUÉS -->
+    <section>
+        <p class="section-label">El cambio</p>
+        <h2 class="section-title">De dónde venimos · A dónde vamos</h2>
+        <div class="compare-wrap">
+            <div class="compare-card">
+                <div class="compare-header before">
+                    <span class="compare-dot"></span>
+                    Sistema actual (PHP / cPanel)
+                </div>
+                <div class="compare-body">
+                    <div class="compare-item"><span class="ci-icon">✕</span><span>Se cae sin aviso previo y requiere
+                            soporte de emergencia</span></div>
+                    <div class="compare-item"><span class="ci-icon">✕</span><span>Sin historial de cambios — si se borra
+                            algo, se perdió</span></div>
+                    <div class="compare-item"><span class="ci-icon">✕</span><span>Sin roles ni permisos: cualquier
+                            usuario puede hacer cualquier cosa</span></div>
+                    <div class="compare-item"><span class="ci-icon">✕</span><span>Tecnología desactualizada, difícil de
+                            mantener o ampliar</span></div>
+                    <div class="compare-item"><span class="ci-icon">✕</span><span>Sin backups automáticos — los datos
+                            están en riesgo</span></div>
+                    <div class="compare-item"><span class="ci-icon">✕</span><span>Interfaz densa, sin validaciones de
+                            datos en tiempo real</span></div>
+                    <div class="compare-item"><span class="ci-icon">✕</span><span>Soporte reactivo: se arregla solo
+                            cuando se rompe</span></div>
+                </div>
+            </div>
+            <div class="compare-card">
+                <div class="compare-header after">
+                    <span class="compare-dot"></span>
+                    Sistema nuevo propuesto
+                </div>
+                <div class="compare-body">
+                    <div class="compare-item"><span class="ci-icon" style="color:#1a6b3c">✓</span><span>Alta
+                            disponibilidad en la nube — sin caídas inesperadas</span></div>
+                    <div class="compare-item"><span class="ci-icon" style="color:#1a6b3c">✓</span><span>Auditoría
+                            completa: quién cambió qué, cuándo y desde qué valor</span></div>
+                    <div class="compare-item"><span class="ci-icon" style="color:#1a6b3c">✓</span><span>Roles y permisos
+                            granulares por usuario y módulo</span></div>
+                    <div class="compare-item"><span class="ci-icon" style="color:#1a6b3c">✓</span><span>Stack moderno
+                            (Next.js + Supabase), fácil de escalar</span></div>
+                    <div class="compare-item"><span class="ci-icon" style="color:#1a6b3c">✓</span><span>Backups
+                            automáticos y restauración en un clic</span></div>
+                    <div class="compare-item"><span class="ci-icon" style="color:#1a6b3c">✓</span><span>Interfaz limpia
+                            con validaciones, autocompletado y mapas</span></div>
+                    <div class="compare-item"><span class="ci-icon" style="color:#1a6b3c">✓</span><span>Plan de soporte
+                            mensual: mantenimiento preventivo y predecible</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOCKUP DEL NUEVO SISTEMA -->
+    <section style="padding-top:0;">
+        <p class="section-label">Vista previa</p>
+        <h2 class="section-title">Así se vería el nuevo sistema</h2>
+        <div class="browser-wrap">
+            <div class="browser-bar">
+                <div class="b-dot" style="background:#ff5f57"></div>
+                <div class="b-dot" style="background:#febc2e"></div>
+                <div class="b-dot" style="background:#28c840"></div>
+                <div class="b-url">app.viasrurales.com/dashboard</div>
+            </div>
+            <div class="browser-body">
+                <!-- Sidebar -->
+                <div class="mock-sidebar">
+                    <div class="mock-logo">Vias<span>rurales</span></div>
+                    <div class="mock-nav-item active"><span class="mock-nav-icon">▪</span> Dashboard</div>
+                    <div class="mock-nav-item"><span class="mock-nav-icon">▪</span> Aforos</div>
+                    <div class="mock-nav-item"><span class="mock-nav-icon">▪</span> Proyectos</div>
+                    <div class="mock-nav-item"><span class="mock-nav-icon">▪</span> Reportes</div>
+                    <div class="mock-nav-item"><span class="mock-nav-icon">▪</span> Mapas</div>
+                    <div class="mock-nav-item"><span class="mock-nav-icon">▪</span> Consultas</div>
+                    <div class="mock-nav-item"><span class="mock-nav-icon">▪</span> Velocidades</div>
+                    <div class="mock-nav-item"><span class="mock-nav-icon">▪</span> Usuarios</div>
+                    <div class="mock-nav-item"><span class="mock-nav-icon">▪</span> Auditoría</div>
+                </div>
+                <!-- Main -->
+                <div class="mock-main">
+                    <div class="mock-page-title">Dashboard</div>
+                    <div class="mock-page-sub">Bienvenido, Jorge · Hoy 21 abr 2026</div>
+                    <div class="mock-stats">
+                        <div class="mock-stat">
+                            <div class="mock-stat-num">47</div>
+                            <div class="mock-stat-label">Aforos este mes</div>
+                            <div class="mock-stat-badge badge-green">+12%</div>
+                        </div>
+                        <div class="mock-stat">
+                            <div class="mock-stat-num">8</div>
+                            <div class="mock-stat-label">Proyectos activos</div>
+                            <div class="mock-stat-badge badge-amber">3 pendientes</div>
+                        </div>
+                        <div class="mock-stat">
+                            <div class="mock-stat-num">100%</div>
+                            <div class="mock-stat-label">Disponibilidad</div>
+                            <div class="mock-stat-badge badge-green">Sin caídas</div>
+                        </div>
+                    </div>
+                    <div class="mock-table-wrap">
+                        <div class="mock-table-header">
+                            <span class="mock-table-title">Últimos aforos registrados</span>
+                            <div>
+                                <span class="mock-btn-outline">Exportar</span>
+                                <span class="mock-btn">+ Nuevo aforo</span>
+                            </div>
+                        </div>
+                        <table class="mock-t">
+                            <thead>
+                                <tr>
+                                    <th>Proyecto</th>
+                                    <th>Ubicación</th>
+                                    <th>Fecha</th>
+                                    <th>Hora pico</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>ZEES_</strong></td>
+                                    <td>Cali · Zona Norte</td>
+                                    <td>2026-04-18</td>
+                                    <td>07:00 – 08:00</td>
+                                    <td><span class="status-chip sc-green">Completado</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ALBA</strong></td>
+                                    <td>Palmira · Centro</td>
+                                    <td>2026-04-17</td>
+                                    <td>06:15 – 07:15</td>
+                                    <td><span class="status-chip sc-green">Completado</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ZARZAL</strong></td>
+                                    <td>Zarzal · Vía 45N</td>
+                                    <td>2026-04-16</td>
+                                    <td>—</td>
+                                    <td><span class="status-chip sc-amber">En proceso</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>AGUACATAL O.</strong></td>
+                                    <td>Cali · Aguacatal</td>
+                                    <td>2026-04-15</td>
+                                    <td>—</td>
+                                    <td><span class="status-chip sc-blue">Revisión</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p style="text-align:center;font-size:12px;color:var(--ink3);margin-top:14px;">Mockup representativo — el diseño
+            final se ajusta con el equipo</p>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section style="background:var(--white); max-width:100%; padding: 64px 40px;">
+        <div style="max-width:1080px;margin:0 auto;">
+            <p class="section-label">Por qué vale la pena</p>
+            <h2 class="section-title">Beneficios concretos para el negocio</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔒</div>
+                    <div class="benefit-title">Sin pérdida de datos</div>
+                    <div class="benefit-desc">Backups automáticos diarios y auditoría completa de cada cambio. Si algo
+                        falla, se restaura en minutos.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <div class="benefit-title">Cero caídas inesperadas</div>
+                    <div class="benefit-desc">Infraestructura en la nube con alta disponibilidad. El sistema funciona
+                        cuando el equipo lo necesita, sin llamadas de emergencia.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">👥</div>
+                    <div class="benefit-title">Control por roles</div>
+                    <div class="benefit-desc">Cada usuario solo ve y hace lo que le corresponde. Los datos sensibles
+                        están protegidos por permisos granulares.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <div class="benefit-title">Reportes al instante</div>
+                    <div class="benefit-desc">Hora pico, datos crudos, exportación a Excel. Los entregables para
+                        clientes se generan en segundos, no en horas.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🗺️</div>
+                    <div class="benefit-title">Mapas y GeoJSON</div>
+                    <div class="benefit-desc">Visualización geográfica de las estaciones de aforo, carga y descarga de
+                        archivos GeoJSON, y cálculo de velocidades integrado.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔧</div>
+                    <div class="benefit-title">Soporte predecible</div>
+                    <div class="benefit-desc">Plan mensual de mantenimiento preventivo. Se acabó pagar soporte de
+                        emergencia cuando el sistema se cae en el peor momento.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section>
+        <p class="section-label">Plan de entrega</p>
+        <h2 class="section-title">14 semanas · 7 fases de valor incremental</h2>
+        <div class="timeline">
+            <div class="tl-phase">
+                <div class="tl-num">Fase 1</div>
+                <div class="tl-title">Base y usuarios</div>
+                <div class="tl-weeks">Sem 1–2</div>
+                <div class="tl-bar">
+                    <div class="tl-fill" style="width:100%"></div>
+                </div>
+            </div>
+            <div class="tl-phase">
+                <div class="tl-num">Fase 2</div>
+                <div class="tl-title">Roles y proyectos</div>
+                <div class="tl-weeks">Sem 3–4</div>
+                <div class="tl-bar">
+                    <div class="tl-fill" style="width:85%"></div>
+                </div>
+            </div>
+            <div class="tl-phase">
+                <div class="tl-num">Fase 3</div>
+                <div class="tl-title">Formatos</div>
+                <div class="tl-weeks">Sem 5–6</div>
+                <div class="tl-bar">
+                    <div class="tl-fill" style="width:70%"></div>
+                </div>
+            </div>
+            <div class="tl-phase">
+                <div class="tl-num">Fase 4</div>
+                <div class="tl-title">Captura de datos</div>
+                <div class="tl-weeks">Sem 7–8</div>
+                <div class="tl-bar">
+                    <div class="tl-fill" style="width:57%"></div>
+                </div>
+            </div>
+            <div class="tl-phase">
+                <div class="tl-num">Fase 5</div>
+                <div class="tl-title">Reportes</div>
+                <div class="tl-weeks">Sem 9–10</div>
+                <div class="tl-bar">
+                    <div class="tl-fill" style="width:43%"></div>
+                </div>
+            </div>
+            <div class="tl-phase">
+                <div class="tl-num">Fase 6</div>
+                <div class="tl-title">Mapas y velocidades</div>
+                <div class="tl-weeks">Sem 11–12</div>
+                <div class="tl-bar">
+                    <div class="tl-fill" style="width:28%"></div>
+                </div>
+            </div>
+            <div class="tl-phase" style="border-right:none">
+                <div class="tl-num">Fase 7</div>
+                <div class="tl-title">Auditoría y cierre</div>
+                <div class="tl-weeks">Sem 13–14</div>
+                <div class="tl-bar">
+                    <div class="tl-fill" style="width:14%"></div>
+                </div>
+            </div>
+        </div>
+        <p style="font-size:13px;color:var(--ink3);margin-top:14px;">Cada fase tiene una entrega funcional — el sistema
+            empieza a usarse desde la semana 2, no al final.</p>
+    </section>
+
+    <!-- COTIZACIÓN -->
+    <section style="padding-top:0;">
+        <p class="section-label">Inversión</p>
+        <h2 class="section-title">Desglose por fase</h2>
+        <div class="pricing-row">
+            <div class="pricing-header">
+                <span>Entrega</span>
+                <span>Contenido principal</span>
+                <span style="text-align:right">Valor</span>
+            </div>
+            <div class="pricing-item">
+                <div>
+                    <div class="pi-phase">Fase 1 · Sem 1–2</div>
+                    <div class="pi-desc">Base del sistema y gestión de usuarios</div>
+                </div>
+                <div class="pi-weeks">Login, perfil, recuperación contraseña</div>
+                <div class="pi-price">$800.000</div>
+            </div>
+            <div class="pricing-item">
+                <div>
+                    <div class="pi-phase">Fase 2 · Sem 3–4</div>
+                    <div class="pi-desc">Roles, permisos y proyectos</div>
+                </div>
+                <div class="pi-weeks">Seguridad, tipologías, columnas dinámicas</div>
+                <div class="pi-price">$800.000</div>
+            </div>
+            <div class="pricing-item">
+                <div>
+                    <div class="pi-phase">Fase 3 · Sem 5–6</div>
+                    <div class="pi-desc">Formatos y captura de datos</div>
+                </div>
+                <div class="pi-weeks">Validaciones, metadatos, catálogos</div>
+                <div class="pi-price">$800.000</div>
+            </div>
+            <div class="pricing-item">
+                <div>
+                    <div class="pi-phase">Fase 4 · Sem 7–8</div>
+                    <div class="pi-desc">Operación de formatos</div>
+                </div>
+                <div class="pi-weeks">Edición por celda, franjas horarias</div>
+                <div class="pi-price">$800.000</div>
+            </div>
+            <div class="pricing-item">
+                <div>
+                    <div class="pi-phase">Fase 5 · Sem 9–10</div>
+                    <div class="pi-desc">Reportes, exportación y consultas</div>
+                </div>
+                <div class="pi-weeks">Hora pico, Excel, análisis avanzado</div>
+                <div class="pi-price">$800.000</div>
+            </div>
+            <div class="pricing-item">
+                <div>
+                    <div class="pi-phase">Fase 6 · Sem 11–12</div>
+                    <div class="pi-desc">Mapas GeoJSON y velocidades</div>
+                </div>
+                <div class="pi-weeks">Visualización geográfica, cálculo</div>
+                <div class="pi-price">$800.000</div>
+            </div>
+            <div class="pricing-item">
+                <div>
+                    <div class="pi-phase">Fase 7 · Sem 13–14</div>
+                    <div class="pi-desc">Auditoría, backups y cierre</div>
+                </div>
+                <div class="pi-weeks">Historial, restauración, manual</div>
+                <div class="pi-price">$800.000</div>
+            </div>
+            <div class="pricing-total">
+                <div>
+                    <div class="pt-label">Total del proyecto</div>
+                    <div style="font-size:12px;opacity:.4;margin-top:2px;">7 fases · 14 semanas · entregables
+                        funcionales en cada fase</div>
+                </div>
+                <div class="pt-num">$5.600.000</div>
+            </div>
+        </div>
+
+        <!-- Soporte -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;">
+            <div
+                style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:var(--shadow);">
+                <div
+                    style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;">
+                    Post-entrega</div>
+                <div style="font-size:15px;font-weight:600;margin-bottom:6px;">2 meses sin costo adicional</div>
+                <div style="font-size:13px;color:var(--ink3);">Corrección de errores incluida durante los 2 meses
+                    posteriores a la entrega final.</div>
+            </div>
+            <div
+                style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:var(--shadow);">
+                <div
+                    style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;">
+                    Soporte continuo</div>
+                <div style="font-size:15px;font-weight:600;margin-bottom:6px;">$120.000 por solicitud</div>
+                <div style="font-size:13px;color:var(--ink3);">Revisión, corrección y ajustes menores. Nuevas
+                    funcionalidades se cotizan por separado.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <strong>Propuesta preparada para Grupo Vial · Viasrurales</strong><br>
+        Documento confidencial · 2026
+    </div>
+
+</body>
+
+</html>
